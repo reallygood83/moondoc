@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoonDoc</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #151520;
+      --panel: #202031;
+      --text: #f4f1ff;
+      --muted: #b8b2cb;
+      --accent: #e78cad;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 0%, rgba(231,140,173,.22), transparent 32rem), var(--bg);
+      color: var(--text);
+    }
+    main {
+      width: min(960px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(40px, 7vw, 84px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+    p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .empty {
+      margin-top: 40px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--panel) 92%, transparent);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="badge">MarkTL Shared HTML</span>
+    <h1>MoonDoc</h1>
+    <p>Published MarkTL documents will appear here after the first GitHub Pages export.</p>
+    <section class="empty" aria-label="No published documents">
+      <p>No published documents yet.</p>
+    </section>
+  </main>
+</body>
+</html>
