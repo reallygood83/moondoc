@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>트럼프가 '델 사라'고 했을 때, 월가는 노트북을 사지 않았다</title>
+<meta name="description" content="트럼프 '델 사라' 말 한마디에 12% 폭등, 진짜 이유는 따로 있었다 — Dell AI 서버, $43B 백로그, NVIDIA 파트너십 분석" />
+<style>
+  :root{
+    --bg:#f5f3ee;
+    --bg-2:#ecebe4;
+    --ink:#16181c;
+    --ink-2:#3b3f47;
+    --muted:#6b7280;
+    --line:#dad7cd;
+    --line-2:#c8c4b6;
+    --paper:#ffffff;
+    --primary:#0b3a5b;
+    --primary-2:#0e527f;
+    --accent:#c5301f;
+    --accent-2:#e6492a;
+    --gold:#b07f24;
+    --green:#0f6b3b;
+    --red:#9e2218;
+    --shadow:0 1px 0 rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.18);
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard Variable",Pretendard,"Noto Sans KR","Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.75;
+    font-size:17px;
+    letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  a{color:var(--primary-2);text-decoration:none;border-bottom:1px dotted rgba(14,82,127,.4)}
+  a:hover{border-bottom-style:solid}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg,#0b1620 0%,#16222e 60%,#1f2d3a 100%);
+    color:#f4efe6;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid #000;
+  }
+  .hero-inner{padding:64px 28px 56px;max-width:var(--maxw);margin:0 auto}
+  .eyebrow{
+    display:inline-flex;gap:10px;align-items:center;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:#e7c98a;font-weight:600;
+    padding:6px 12px;border:1px solid rgba(231,201,138,.4);
+    border-radius:999px;background:rgba(231,201,138,.06);
+  }
+  .eyebrow .dot{width:6px;height:6px;background:#e7c98a;border-radius:999px;display:inline-block}
+  .hero h1{
+    font-size:clamp(28px,4.6vw,52px);
+    line-height:1.18;letter-spacing:-0.025em;
+    margin:18px 0 14px;font-weight:800;color:#f7efe1;
+  }
+  .hero h1 em{font-style:normal;color:#e7c98a;background:linear-gradient(180deg,transparent 60%,rgba(197,48,31,.35) 0);padding:0 .15em}
+  .hero .lede{font-size:clamp(15px,1.6vw,18px);color:#cdd5dc;max-width:720px;margin-top:8px}
+  .meta{
+    display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;
+    margin-top:28px;font-size:13px;color:#a9b3bd;
+  }
+  .meta b{color:#e7c98a;font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{
+    font-size:12px;background:rgba(231,201,138,.08);
+    color:#e7c98a;padding:5px 10px;border-radius:999px;
+    border:1px solid rgba(231,201,138,.25);font-weight:500;
+  }
+  .poster{
+    margin-top:36px;border-radius:var(--radius);overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 80px -30px rgba(0,0,0,.7);
+    background:#0a131c;
+  }
+  .poster img{width:100%;display:block;height:auto}
+
+  /* TOOLBAR */
+  .toolbar{
+    position:sticky;top:0;z-index:40;background:rgba(245,243,238,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .toolbar-inner{
+    max-width:var(--maxw);margin:0 auto;padding:10px 28px;
+    display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  }
+  .crumb{font-size:13px;color:var(--muted);margin-right:auto;font-weight:600;letter-spacing:-0.01em}
+  .crumb b{color:var(--ink)}
+  .btn{
+    appearance:none;border:1px solid var(--line-2);background:var(--paper);
+    color:var(--ink);font-weight:600;font-size:13px;
+    padding:7px 12px;border-radius:8px;cursor:pointer;
+    transition:all .15s ease;display:inline-flex;align-items:center;gap:6px;
+    font-family:inherit;letter-spacing:-0.01em;
+  }
+  .btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .btn.primary:hover{background:var(--primary-2)}
+  .btn.ghost{background:transparent}
+  .toast{
+    position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;font-size:13px;font-weight:600;
+    padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;
+    transition:all .2s ease;z-index:60;box-shadow:0 12px 30px rgba(0,0,0,.3);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* TOC */
+  .toc{
+    margin:32px 0;padding:24px 28px;
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);
+  }
+  .toc-title{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:12px;
+  }
+  .toc ol{margin:0;padding:0;list-style:none;counter-reset:toc}
+  .toc li{counter-increment:toc;padding:6px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  .toc li:last-child{border-bottom:none}
+  .toc li::before{
+    content:counter(toc,decimal-leading-zero);
+    font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);
+    margin-right:14px;font-size:13px;
+  }
+  .toc a{color:var(--ink);border:none}
+  .toc a:hover{color:var(--primary)}
+
+  /* SECTIONS */
+  main{padding:8px 0 60px}
+  section.card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin:28px 0;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .card-head{
+    padding:28px 36px 0;
+    display:flex;gap:18px;align-items:flex-start;
+    cursor:pointer;user-select:none;
+  }
+  .card-head .num{
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-size:13px;font-weight:700;color:var(--accent);
+    background:#fff5f3;border:1px solid #f3d6cf;
+    padding:4px 10px;border-radius:6px;
+    letter-spacing:.05em;flex-shrink:0;margin-top:6px;
+  }
+  .card-head h2{
+    font-size:clamp(22px,2.6vw,30px);font-weight:800;
+    margin:0;letter-spacing:-0.02em;line-height:1.3;
+    flex:1;
+  }
+  .card-head .toggle{
+    color:var(--muted);font-size:14px;font-weight:600;
+    margin-top:8px;flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .card.collapsed .toggle{transform:rotate(-90deg)}
+  .card-body{padding:18px 36px 36px;transition:max-height .3s ease}
+  .card.collapsed .card-body{display:none}
+
+  h3{font-size:18px;font-weight:700;margin:26px 0 8px;letter-spacing:-0.015em}
+  p{margin:0 0 14px}
+  ul{padding-left:22px;margin:8px 0 14px}
+  li{margin:4px 0}
+  hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+
+  blockquote{
+    margin:18px 0;padding:16px 20px;
+    border-left:4px solid var(--accent);
+    background:linear-gradient(90deg,#fff5f3 0%,transparent 100%);
+    font-size:15.5px;color:var(--ink-2);font-style:italic;
+    border-radius:0 8px 8px 0;
+  }
+  blockquote em{color:var(--accent);font-weight:600;font-style:normal}
+
+  code{
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.92em;
+    background:#f0ede4;padding:1px 6px;border-radius:4px;
+    color:var(--accent);font-weight:500;
+  }
+
+  .pull{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,#faf8f2,#f5f3ee);
+    padding:22px 26px;border-radius:12px;margin:22px 0;
+    font-size:17px;line-height:1.6;color:var(--ink-2);
+    position:relative;
+  }
+  .pull::before{
+    content:"“";position:absolute;left:14px;top:-8px;
+    font-family:Georgia,serif;font-size:60px;color:var(--gold);
+    line-height:1;font-weight:700;
+  }
+  .pull{padding-left:50px}
+
+  /* PROLOGUE special */
+  .prologue{
+    background:linear-gradient(180deg,#fefcf6,var(--paper));
+    border-left:4px solid var(--gold);
+  }
+  .prologue .card-head h2{color:var(--ink)}
+
+  /* TRANSITION VIZ (mermaid 1 replacement) */
+  .transition-viz{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:18px;
+    align-items:center;margin:24px 0;
+  }
+  .era-card{
+    border-radius:12px;padding:20px;border:1px solid;
+  }
+  .era-card.past{background:#fdf3f1;border-color:#f0c9c0;color:#5a1a13}
+  .era-card.future{background:#eaf6ee;border-color:#bbe0c5;color:#0d4023}
+  .era-label{
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:700;margin-bottom:8px;
+  }
+  .era-card.past .era-label{color:var(--red)}
+  .era-card.future .era-label{color:var(--green)}
+  .era-card h4{font-size:17px;font-weight:800;margin:0 0 12px;letter-spacing:-0.015em}
+  .era-stat{display:flex;justify-content:space-between;font-size:13.5px;padding:6px 0;border-bottom:1px dashed currentColor}
+  .era-stat:last-child{border-bottom:none}
+  .era-stat span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+  .arrow-cell{font-size:32px;color:var(--gold);font-weight:300;text-align:center;line-height:1}
+
+  @media (max-width:720px){
+    .transition-viz{grid-template-columns:1fr;gap:12px}
+    .arrow-cell{transform:rotate(90deg)}
+  }
+
+  /* TABLES */
+  .table-wrap{margin:18px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  thead{background:#1a2330;color:#f4efe6}
+  th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-weight:700;letter-spacing:-0.01em;font-size:13px}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:#faf8f2}
+  td b{color:var(--accent)}
+
+  /* STAT GRID */
+  .stat-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;margin:22px 0;
+  }
+  .stat{
+    padding:18px;border-radius:10px;
+    background:#fafaf6;border:1px solid var(--line);
+  }
+  .stat .label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .stat .value{font-size:28px;font-weight:800;color:var(--primary);margin-top:4px;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+  .stat .value small{font-size:14px;color:var(--accent);font-weight:700;margin-left:4px}
+
+  /* PIE bar replacement */
+  .composition{margin:24px 0;padding:24px;background:#fafaf6;border:1px solid var(--line);border-radius:12px}
+  .composition-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .comp-row{display:grid;grid-template-columns:170px 1fr 60px;gap:14px;align-items:center;padding:8px 0;font-size:14px}
+  .comp-bar{height:14px;border-radius:7px;background:#e8e5dc;overflow:hidden;position:relative}
+  .comp-fill{height:100%;border-radius:7px;transition:width .8s ease}
+  .comp-pct{font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
+  .comp-row[data-cat="ai"] .comp-fill{background:linear-gradient(90deg,var(--primary),var(--primary-2))}
+  .comp-row[data-cat="legacy"] .comp-fill{background:linear-gradient(90deg,#5a7a93,#7a96a8)}
+  .comp-row[data-cat="pc"] .comp-fill{background:linear-gradient(90deg,#b07f24,#d4a44a)}
+  .comp-row[data-cat="other"] .comp-fill{background:linear-gradient(90deg,#9aa1a9,#bcc2c8)}
+
+  /* QUESTIONS */
+  .questions{
+    background:linear-gradient(180deg,#fff5f3 0%,#fefcf6 100%);
+    border-left:4px solid var(--accent);
+  }
+  .questions ol{padding-left:0;list-style:none;counter-reset:q;margin:0}
+  .questions li{
+    counter-increment:q;padding:14px 0 14px 56px;position:relative;
+    border-bottom:1px solid rgba(197,48,31,.15);font-size:15.5px;
+  }
+  .questions li:last-child{border-bottom:none}
+  .questions li::before{
+    content:"Q" counter(q);position:absolute;left:0;top:14px;
+    font-weight:800;color:var(--accent);font-size:14px;
+    background:#fff;border:1px solid var(--accent);
+    width:42px;height:32px;display:flex;align-items:center;justify-content:center;
+    border-radius:8px;font-variant-numeric:tabular-nums;
+  }
+
+  /* SOURCES */
+  .sources{font-size:13.5px;color:var(--ink-2)}
+  .sources ol{padding-left:22px}
+  .sources li{margin:8px 0}
+  .sources a{font-weight:500;word-break:break-word}
+
+  /* CONCLUSION */
+  .conclusion{
+    background:linear-gradient(180deg,#0b1620,#16222e);color:#f4efe6;
+    border:none;
+  }
+  .conclusion .card-head h2{color:#f7efe1}
+  .conclusion .num{background:rgba(231,201,138,.1);color:#e7c98a;border-color:rgba(231,201,138,.3)}
+  .conclusion p{color:#cdd5dc}
+  .conclusion blockquote{
+    background:rgba(231,201,138,.06);border-left-color:#e7c98a;
+    color:#e7c98a;font-size:18px;text-align:center;
+    padding:24px;border-radius:8px;margin:28px 0;
+  }
+  .conclusion blockquote::before{content:""}
+  .conclusion .toggle{color:#a9b3bd}
+
+  /* FOOTER */
+  footer{
+    text-align:center;padding:40px 24px;color:var(--muted);font-size:13px;
+    border-top:1px solid var(--line);background:var(--bg-2);
+  }
+
+  /* PRINT */
+  @media print{
+    .toolbar,.toast{display:none}
+    body{background:#fff;font-size:11pt}
+    section.card{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}
+    .card.collapsed .card-body{display:block !important}
+    .hero{background:#fff;color:#000}
+    .hero h1{color:#000}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow"><span class="dot"></span> News Insight · 2026.05.10</span>
+    <h1>트럼프가 <em>'델 사라'</em>고 했을 때,<br />월가는 노트북을 사지 않았다</h1>
+    <p class="lede">같은 한 문장을 들어도 누군가는 노트북을 떠올리고, 누군가는 $43B의 백로그를 본다. 그 차이가 곧 수익률의 차이다.</p>
+    <div class="meta">
+      <span><b>Author</b> · Moon</span>
+      <span><b>Category</b> · NewsInsight</span>
+      <span><b>Reading</b> · 약 8분</span>
+      <span><b>Status</b> · 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag">#AI인프라</span>
+      <span class="tag">#Dell</span>
+      <span class="tag">#PowerEdge</span>
+      <span class="tag">#NVIDIA</span>
+      <span class="tag">#투자인사이트</span>
+    </div>
+    <figure class="poster">
+      <img src="assets/dell-ai%EC%84%9C%EB%B2%84-%ED%8A%B8%EB%9F%BC%ED%94%84%EC%8B%9C%EA%B7%B8%EB%84%90-ko-2026-05-10-poster-1778390361592.jpg" alt="Dell AI 서버 트럼프 시그널 포스터" />
+    </figure>
+  </div>
+</header>
+
+<!-- STICKY TOOLBAR -->
+<nav class="toolbar" aria-label="문서 도구">
+  <div class="toolbar-inner">
+    <div class="crumb"><b>Dell vs. Trump's Headline</b> — AI Infra Deep Dive</div>
+    <button class="btn" onclick="toggleAll()" id="toggleAllBtn">전체 접기</button>
+    <button class="btn" onclick="copyAs('summary')">요약 복사</button>
+    <button class="btn" onclick="copyAs('markdown')">마크다운 복사</button>
+    <button class="btn primary" onclick="copyAs('prompt')">프롬프트로 복사</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- TOC -->
+  <aside class="toc" aria-label="목차">
+    <div class="toc-title">Table of Contents</div>
+    <ol id="toc-list"></ol>
+  </aside>
+
+  <main>
+
+    <!-- PROLOGUE -->
+    <section class="card prologue" data-toc="프롤로그: 같은 문장, 다른 해석">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">000</span>
+        <h2>프롤로그 — 같은 문장, 다른 해석</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <p>5월 어머니날 백악관 행사에서 트럼프 대통령이 말했다. <strong>"나가서 Dell 노트북을 사세요. 정말 좋습니다."</strong></p>
+        <p>다음 날, Dell 주가는 12~15% 급등했고 한 주간 20% 이상 올라 사상 최고치를 찍었다.<sup><a href="#fn1">[1]</a></sup></p>
+        <p>대부분의 뉴스는 이걸 "정치적 호재"로 정리했다. 하지만 나는 다른 생각이 든다. 월가가 사들인 건 노트북이 아니었다. <strong>AI 인프라 사이클의 가장 신뢰할 수 있는 미국 파트너</strong>였다.</p>
+        <blockquote>같은 한 문장을 들어도, 누군가는 노트북을 떠올리고 누군가는 <em>$43B의 백로그</em>를 본다. 그 차이가 곧 수익률의 차이다.</blockquote>
+        <p style="color:var(--muted);font-size:14.5px">(나는 투자를 위해 AI 반도체·인프라 종목을 추적해왔다. 트럼프의 그 한마디가 왜 "PC가 아니라 서버"를 뜻하는지, 데이터로 풀어본다.)</p>
+      </div>
+    </section>
+
+    <!-- I -->
+    <section class="card" data-toc="I — 노트북은 더 이상 Dell의 이야기가 아니다">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">PART I</span>
+        <h2>노트북은 더 이상 Dell의 이야기가 아니다</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <p>당신이 마지막으로 Dell XPS나 Alienware를 산 게 언제인가?</p>
+        <p>Dell의 전통 강점이었던 <strong>CSG (Client Solutions Group)</strong>, 즉 PC 사업은 이미 둔화 국면이다.</p>
+
+        <div class="stat-grid">
+          <div class="stat"><div class="label">CSG 운영마진</div><div class="value">4.7<small>%</small></div></div>
+          <div class="stat"><div class="label">컨슈머 PC 매출 YoY</div><div class="value" style="color:var(--accent)">−7<small>%</small></div></div>
+          <div class="stat"><div class="label">2026 DRAM 가격</div><div class="value" style="color:var(--accent)">+110<small>%</small></div></div>
+          <div class="stat"><div class="label">2026 글로벌 PC 출하</div><div class="value" style="color:var(--accent)">−11.3<small>%</small></div></div>
+        </div>
+
+        <blockquote>"XPS나 Alienware 몇 대 더 팔린다고 Dell 전체 실적이 바뀌지는 않는다."</blockquote>
+
+        <p>수치가 말하고 있다. PC는 Dell의 미래가 아니다. 메모리 가격 폭등으로 ASP(평균 판매가)는 17% 오르지만, 그건 단지 마진 압박을 흡수하는 수준이다.</p>
+        <p>여기서 핵심이 나온다. <strong>트럼프의 PC 칭찬은 표지였고, 진짜 본문은 따로 있었다.</strong></p>
+      </div>
+    </section>
+
+    <!-- II -->
+    <section class="card" data-toc="II — 진짜 게임체인저: $43B 백로그">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">PART II</span>
+        <h2>진짜 게임체인저 — $43B 백로그가 말하는 것</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <p>Dell의 <strong>ISG (Infrastructure Solutions Group)</strong>, 그 안의 AI 서버 사업이 회사를 완전히 다른 회사로 바꾸고 있다.<sup><a href="#fn5">[5]</a></sup></p>
+
+        <!-- Transition viz -->
+        <div class="transition-viz" role="img" aria-label="Dell의 PC 시대에서 AI 시대로의 전환">
+          <div class="era-card past">
+            <div class="era-label">🔴 과거 — PC 회사 Dell</div>
+            <h4>저마진 · 정체된 성장</h4>
+            <div class="era-stat"><span>CSG 매출</span><span>약 $50B</span></div>
+            <div class="era-stat"><span>운영마진</span><span>4.7%</span></div>
+            <div class="era-stat"><span>성장률</span><span>정체</span></div>
+          </div>
+          <div class="arrow-cell">→</div>
+          <div class="era-card future">
+            <div class="era-label">🟢 현재 — AI 인프라 Dell</div>
+            <h4>고마진 · 폭발적 수주</h4>
+            <div class="era-stat"><span>ISG AI 서버</span><span>$25B+</span></div>
+            <div class="era-stat"><span>운영마진</span><span>14.8%</span></div>
+            <div class="era-stat"><span>FY27 가이던스</span><span>$50B</span></div>
+            <div class="era-stat"><span>백로그</span><span>$43B</span></div>
+          </div>
+        </div>
+
+        <h3>숫자만 모아보면</h3>
+        <ul>
+          <li><strong>Q4 FY26 AI-optimized 서버 매출</strong> — $9.0B (+342% YoY)</li>
+          <li><strong>FY26 누적 AI 서버 출하</strong> — $25B+</li>
+          <li><strong>FY27 가이던스</strong> — 약 $50B (+103% YoY)</li>
+          <li><strong>AI 서버 백로그</strong> — $43B (역대 최대)</li>
+          <li><strong>누적 AI 수주</strong> — $64B+</li>
+          <li><strong>AI 고객 수</strong> — 4,000개 이상 (xAI, CoreWeave 등 포함)</li>
+        </ul>
+
+        <h3>마진 구조가 결정적이다</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>사업부</th><th>운영마진</th><th>성장률</th><th>Dell의 미래 비중</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>CSG (PC)</td><td>4.7%</td><td>1~14%</td><td>⬇️ 축소</td></tr>
+              <tr><td><b>ISG (AI 서버)</b></td><td><b>14.8%</b></td><td><b>+342% YoY</b></td><td>⬆️ 핵심</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <blockquote>AI 서버 한 대의 마진은 노트북 세 대의 마진과 같다. 그런데 출하량은 비교가 안 된다.</blockquote>
+
+        <p>Dell AI Factory with NVIDIA 솔루션은 단순한 서버가 아니다. Blackwell, HGX, Rubin GPU를 탑재한 PowerEdge XE 시리즈를 <strong>턴키(turnkey)로 설계·통합·지원</strong>까지 묶어 판다. 4,000개 고객의 의미는 거기 있다.</p>
+      </div>
+    </section>
+
+    <!-- III -->
+    <section class="card" data-toc="III — SMCI 사태가 만든 의도치 않은 선물">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">PART III</span>
+        <h2>SMCI 사태가 만든 의도치 않은 선물</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <p>2026년 3월 19일, Supermicro($SMCI) 직원 2명과 협력사가 <strong>$2.5B 규모의 NVIDIA Blackwell·Hopper 칩 중국 밀수출 혐의</strong>로 기소됐다.<sup><a href="#fn6">[6]</a></sup></p>
+
+        <p>회사 자체는 피고가 아니었지만, 시장은 즉각 반응했다. SMCI 주가는 28% 폭락했다. 더 중요한 건 NVIDIA의 행동이었다.</p>
+
+        <div class="pull">NVIDIA는 SMCI에 갈 예정이던 주문을 다른 벤더로 우회시키기 시작했다. AI 공급망 안정성을 위해서다.<sup><a href="#fn7">[7]</a></sup></div>
+
+        <p>여기서 역설이 등장한다. <strong>SMCI의 위기가 곧 Dell의 기회가 됐다는 것.</strong></p>
+
+        <ul>
+          <li>안정적 공급망 ✅</li>
+          <li>대형 글로벌 지원 조직 ✅</li>
+          <li>강한 재무구조 ($113.5B 매출, 19% 성장) ✅</li>
+          <li>정치적 우호 분위기 ($6.25B 기부 배경<sup><a href="#fn8">[8]</a></sup>) ✅</li>
+        </ul>
+
+        <p>NVIDIA 입장에서 가장 신뢰할 수 있는 "기관급 파트너"는 누구인가? Dell이 그 자리에 가장 가깝게 서 있다.</p>
+
+        <!-- Composition pie replacement -->
+        <div class="composition">
+          <div class="composition-title">FY27 Dell 매출 구성 전망 — $138~142B</div>
+          <div class="comp-row" data-cat="ai">
+            <span>AI 서버 (ISG-AI)</span>
+            <div class="comp-bar"><div class="comp-fill" style="width:36%"></div></div>
+            <div class="comp-pct">36%</div>
+          </div>
+          <div class="comp-row" data-cat="legacy">
+            <span>전통 서버·스토리지</span>
+            <div class="comp-bar"><div class="comp-fill" style="width:28%"></div></div>
+            <div class="comp-pct">28%</div>
+          </div>
+          <div class="comp-row" data-cat="pc">
+            <span>PC (CSG)</span>
+            <div class="comp-bar"><div class="comp-fill" style="width:28%"></div></div>
+            <div class="comp-pct">28%</div>
+          </div>
+          <div class="comp-row" data-cat="other">
+            <span>기타 · 서비스</span>
+            <div class="comp-bar"><div class="comp-fill" style="width:8%"></div></div>
+            <div class="comp-pct">8%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IV -->
+    <section class="card" data-toc="IV — 시장은 표면 한 겹 아래를 본다">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">PART IV</span>
+        <h2>시장은 늘 표면 한 겹 아래를 본다</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <p>여기서 의문이 생긴다. 왜 일반 투자자는 "노트북"을 듣고, 기관은 "AI 서버"를 보는가?</p>
+        <p>답은 단순하다. <strong>데이터는 모두에게 공개되어 있지만, 맥락은 누구에게나 공평하지 않다.</strong></p>
+        <p>Q4 어닝콜에서 Dell CFO는 "AI 서버 수주 파이프라인이 백로그의 몇 배"라고 말했다. 트럼프의 한 마디는 그 위에 떨어진 점화 스파크였을 뿐이다. 펀더멘털은 이미 6개월 전부터 움직이고 있었다.</p>
+
+        <h3>실천 인사이트</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:30%">인사이트</th><th>행동 방식</th></tr></thead>
+            <tbody>
+              <tr><td>🔍 <b>헤드라인 너머 보기</b></td><td>"트럼프 발언" 같은 단어가 보이면, 회사의 분기 실적과 가이던스를 다시 펼쳐본다</td></tr>
+              <tr><td>📊 <b>마진 구조 추적</b></td><td>매출 성장률보다 마진의 구조 변화가 장기 가치를 더 정확하게 알려준다</td></tr>
+              <tr><td>🔗 <b>공급망 사슬 읽기</b></td><td>한 회사의 위기는 다른 회사의 백로그가 된다. SMCI ↔ Dell 사례가 교과서</td></tr>
+              <tr><td>⏰ <b>타이밍보다 사이클</b></td><td>"AI capex 사이클"이 어디쯤 와 있는지를 묻는 게 단기 뉴스보다 중요하다</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="card questions" data-toc="💭 생각해볼 질문">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">DISCUSS</span>
+        <h2>이 글을 읽고 생각해볼 질문</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <ol>
+          <li>SMCI FBI 수사가 NVIDIA 공급망에 만든 균열이, 메모리 가격 인플레이션과 어떻게 맞물려 AI 서버 capex 사이클을 가속/압축시켰는가?</li>
+          <li>지정학적 공급망 충격이 "신뢰받는 인프라 벤더"로의 자본 집중을 가속화한다면, 이는 전통적 가격 예측 모델보다 더 빠른 신호가 될 수 있는가?</li>
+          <li>Dell의 백로그 폭증은 SMCI 사태가 공개되기 전부터 시작되었는가, 아니면 그 이후 가속됐는가? — 이 순서가 다음 사이클에서 어떤 의미를 가지는가?</li>
+        </ol>
+        <p style="margin-top:18px;color:var(--muted);font-size:14px">댓글로 당신의 생각을 공유해주세요.</p>
+      </div>
+    </section>
+
+    <!-- CONCLUSION -->
+    <section class="card conclusion" data-toc="결론 — 표지에 속지 마라">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">EPILOGUE</span>
+        <h2>결론 — 표지에 속지 마라, 본문을 읽어라</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <p>트럼프의 "Dell 사라"는 한 문장이 이렇게 다양하게 해석될 수 있다는 게 자본 시장의 본질이다.</p>
+        <p>같은 뉴스를 보고도 누군가는 노트북을 떠올리고, 누군가는 $43B 백로그와 14.8% 마진을 본다. 둘은 같은 정보를 들었지만 <strong>전혀 다른 세상</strong>에 있다.</p>
+        <p>AI 시대는 정보의 시대가 아니다. <strong>맥락의 시대</strong>다. 데이터는 무료지만, 데이터를 묶어 의미로 만드는 능력은 점점 더 비싸진다.</p>
+        <p>당신의 일상에서 들리는 모든 헤드라인 뒤에는, 표면적 의미와 구조적 의미가 따로 있다. 어느 쪽을 읽고 있는가?</p>
+        <blockquote>"같은 문장을 들어도 누군가는 표지를 읽고, 누군가는 본문을 읽는다.<br />그 차이가 곧 인생의 차이다."</blockquote>
+      </div>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="card sources" data-toc="Sources">
+      <div class="card-head" onclick="toggleCard(this)">
+        <span class="num">REFS</span>
+        <h2>Sources</h2>
+        <span class="toggle">▾</span>
+      </div>
+      <div class="card-body">
+        <ol>
+          <li id="fn1"><a href="https://x.com/SVTrivo/status/2053243835611021658" target="_blank" rel="noopener">트럼프가 "Dell 사라"고 했지만, 시장이 산 건 AI 서버였다 — @SVTrivo, X</a></li>
+          <li id="fn2"><a href="https://futurumgroup.com/insights/dell-q4-fy-2026-earnings-highlight-ai-optimized-server-ramp/" target="_blank" rel="noopener">Dell Q4 FY 2026 Earnings Highlight AI-Optimized Server Ramp — Futurum Group</a></li>
+          <li id="fn3"><a href="https://www.trendforce.com/presscenter/news/20251211-12831.html" target="_blank" rel="noopener">Memory Price Surge to Persist in 1Q26 — TrendForce</a></li>
+          <li id="fn4"><a href="https://www.tomshardware.com/tech-industry/idc-warns-pc-market-could-shrink-up-to-9-percent-in-2026-due-to-skyrocketing-ram-pricing-even-moderate-forecast-hits-5-percent-drop-as-ai-driven-shortages-slam-into-pc-market" target="_blank" rel="noopener">IDC warns PC market could shrink up to 9% in 2026 — Tom's Hardware</a></li>
+          <li id="fn5"><a href="https://www.nextplatform.com/compute/2026/03/01/ai-servers-finally-dominate-dells-systems-business/4093058" target="_blank" rel="noopener">AI Servers Finally Dominate Dell's Systems Business — The Next Platform</a></li>
+          <li id="fn6"><a href="https://fortune.com/2026/05/05/supermicro-ceo-stock-smuggling-nvidia-amd-broadcom-intel/" target="_blank" rel="noopener">Supermicro CEO insists 'no one' beyond indicted employees were involved — Fortune</a></li>
+          <li id="fn7"><a href="https://finance.yahoo.com/news/nvidia-shifts-super-micro-aims-190605386.html" target="_blank" rel="noopener">Nvidia Shifts From Super Micro, Aims to Ensure AI Supply Consistency — Yahoo Finance</a></li>
+          <li id="fn8"><a href="https://www.npr.org/2025/12/03/nx-s1-5628402/michael-and-susan-dell-pledge-6-25-billion-to-fund-trump-accounts" target="_blank" rel="noopener">Michael and Susan Dell pledge $6.25 billion to fund 'Trump Accounts' — NPR</a></li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><em>이 글이 도움이 되셨다면, 한 명의 친구에게 공유해주세요.</em></p>
+  <p style="margin-top:8px">© 2026 Moon · NewsInsight Series</p>
+</footer>
+
+<div class="toast" id="toast">복사 완료</div>
+
+<script>
+  // ---------- TOC ----------
+  (function buildTOC(){
+    const list = document.getElementById('toc-list');
+    document.querySelectorAll('section.card[data-toc]').forEach((s,i)=>{
+      const id = 'sec-'+(i+1);
+      s.id = id;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#'+id;
+      a.textContent = s.dataset.toc;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  })();
+
+  // ---------- Collapse ----------
+  function toggleCard(headEl){
+    const card = headEl.closest('.card');
+    card.classList.toggle('collapsed');
+  }
+
+  let allCollapsed = false;
+  function toggleAll(){
+    allCollapsed = !allCollapsed;
+    document.querySelectorAll('section.card').forEach(c=>{
+      c.classList.toggle('collapsed', allCollapsed);
+    });
+    document.getElementById('toggleAllBtn').textContent = allCollapsed ? '전체 펼치기' : '전체 접기';
+  }
+
+  // ---------- Toast ----------
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=>t.classList.remove('show'), 1800);
+  }
+
+  // ---------- Copy modes ----------
+  const SUMMARY = `[Dell · 트럼프 시그널 요약]
+• 트럼프 "Dell 노트북 사라" 한 마디 → 주가 12~15% 급등, 한 주간 +20%
+• 진짜 동력은 PC가 아니라 AI 서버 (ISG)
+• Q4 FY26 AI-서버 매출 $9.0B (+342% YoY), 백로그 $43B, FY27 가이던스 $50B
+• ISG 운영마진 14.8% vs CSG 4.7% — 마진 구조 자체가 바뀌는 중
+• SMCI 밀수출 기소 → NVIDIA가 Dell 등으로 주문 우회 → Dell이 의도치 않은 수혜
+• 핵심 교훈: 헤드라인 표지가 아니라 분기 실적·마진 구조·공급망 본문을 읽어라`;
+
+  const PROMPT_VER = `다음은 "트럼프가 'Dell 사라'고 했을 때, 월가는 노트북을 사지 않았다" 분석 요약입니다. 이 자료를 바탕으로:
+1) Dell의 ISG vs CSG 마진 구조 변화가 향후 12개월 주가에 미칠 영향을 시나리오별로 정리해 주세요.
+2) SMCI 사태로 NVIDIA 주문이 Dell·HPE·Lenovo로 어떻게 재분배될지 비교 분석해 주세요.
+3) 메모리 가격 폭등이 PC ASP, AI 서버 BOM, Dell 종합 마진에 미치는 효과를 분리해서 추정해 주세요.
+
+[원문 요약]
+${SUMMARY}`;
+
+  function getMarkdown(){
+    // simple structural extraction
+    const out = [];
+    out.push('# 트럼프가 \'델 사라\'고 했을 때, 월가는 노트북을 사지 않았다\n');
+    document.querySelectorAll('section.card').forEach(s=>{
+      const h = s.querySelector('.card-head h2');
+      if(h) out.push('\n## '+h.textContent.trim()+'\n');
+      s.querySelectorAll('.card-body > p, .card-body > h3, .card-body > ul, .card-body > blockquote, .card-body > ol').forEach(el=>{
+        if(el.tagName==='H3') out.push('\n### '+el.textContent.trim()+'\n');
+        else if(el.tagName==='UL'){
+          el.querySelectorAll('li').forEach(li=>out.push('- '+li.textContent.trim()));
+        } else if(el.tagName==='OL'){
+          [...el.querySelectorAll('li')].forEach((li,i)=>out.push((i+1)+'. '+li.textContent.trim()));
+        } else if(el.tagName==='BLOCKQUOTE'){
+          out.push('> '+el.textContent.trim());
+        } else {
+          out.push(el.textContent.trim());
+        }
+      });
+    });
+    return out.join('\n');
+  }
+
+  function copyAs(mode){
+    let text = '';
+    if(mode==='summary') text = SUMMARY;
+    else if(mode==='prompt') text = PROMPT_VER;
+    else if(mode==='markdown') text = getMarkdown();
+
+    navigator.clipboard?.writeText(text).then(
+      ()=>showToast(mode==='summary'?'요약 복사됨':mode==='prompt'?'프롬프트 복사됨':'마크다운 복사됨'),
+      ()=>{
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value=text; document.body.appendChild(ta); ta.select();
+        try{document.execCommand('copy'); showToast('복사됨');}catch(e){showToast('복사 실패');}
+        ta.remove();
+      }
+    );
+  }
+
+  // ---------- Animate composition bars on scroll ----------
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.comp-fill').forEach(f=>{
+          const w = f.style.width;
+          f.style.width = '0%';
+          requestAnimationFrame(()=>{ setTimeout(()=>{ f.style.width = w; }, 60); });
+        });
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.composition').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
