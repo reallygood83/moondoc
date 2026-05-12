@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>챗봇 시대 끝났다: 게으른 지시가 AI의 미래인 이유</title>
+  <meta name="description" content="챗봇은 AI 시대의 도착지가 아니라 데모였다. 다음 10억 명은 AI와 대화하지 않고, AI에게 일을 위임할 것이다.">
+  <meta name="author" content="Moon">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="챗봇 시대 끝났다: 게으른 지시가 AI의 미래인 이유">
+  <meta property="og:description" content="더 좋은 프롬프트가 아니라, 더 적은 프롬프트. 개인 AI 에이전트가 챗봇 이후의 인터페이스가 되는 이유.">
+  <meta property="og:image" content="assets/%EC%B1%97%EB%B4%87%EC%9D%98-%EC%8B%9C%EB%8C%80-%EC%A2%85%EB%A7%90-%EA%B0%9C%EC%9D%B8ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-ko-2026-05-08-cartoon-1778240054508.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --paper: #fffaf2;
+      --ink: #171411;
+      --muted: #6f665c;
+      --line: rgba(36, 29, 22, .13);
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --accent-soft: #e7f3ef;
+      --danger: #b91c1c;
+      --success: #15803d;
+      --shadow: 0 22px 70px rgba(42, 32, 22, .12);
+      --serif: Georgia, "Times New Roman", "Noto Serif KR", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(15, 118, 110, .08), transparent 34rem),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 46%, #efe9df 100%);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.72;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    a { color: var(--accent); text-underline-offset: .18em; }
+    img { max-width: 100%; display: block; }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 244, 239, .82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #2f2923;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button {
+      font: inherit;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, .9);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(15, 118, 110, .35);
+      background: #fff;
+    }
+
+    .hero {
+      padding: 72px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(300px, .72fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid rgba(15, 118, 110, .22);
+      background: rgba(231, 243, 239, .72);
+      color: #0f5f59;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 22px 0 20px;
+      font-family: var(--serif);
+      font-size: clamp(40px, 6.4vw, 82px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(18px, 2.1vw, 24px);
+      color: #3f382f;
+      line-height: 1.62;
+    }
+
+    .meta {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meta span {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, .7);
+    }
+
+    .hero-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .hero-card img {
+      aspect-ratio: 1.1 / 1;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .hero-card figcaption {
+      padding: 14px 16px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 760px);
+      gap: 48px;
+      align-items: start;
+      padding: 32px 0 92px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 88px;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, .76);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 14px 40px rgba(42, 32, 22, .06);
+    }
+
+    .toc h2 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .toc a {
+      display: block;
+      padding: 8px 0;
+      color: #3c342c;
+      text-decoration: none;
+      font-size: 14px;
+      border-top: 1px solid rgba(36, 29, 22, .08);
+    }
+
+    .toc a:hover { color: var(--accent); }
+
+    article {
+      min-width: 0;
+    }
+
+    .lede {
+      margin: 0 0 34px;
+      padding: 28px;
+      background: #16231f;
+      color: #f9f3e8;
+      border-radius: 8px;
+      font-size: 20px;
+      line-height: 1.68;
+      box-shadow: var(--shadow);
+    }
+
+    .share-panel, .takeaway, .question-box, .sources {
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, .78);
+      border-radius: 8px;
+      padding: 22px;
+      margin: 32px 0;
+    }
+
+    .share-panel h2, .takeaway h2, .question-box h2, .sources h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-family: var(--sans);
+    }
+
+    .share-text {
+      margin: 0 0 16px;
+      color: #3f382f;
+    }
+
+    .copy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    section {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    h2.section-title {
+      margin: 0 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.7vw, 45px);
+      line-height: 1.18;
+    }
+
+    p {
+      margin: 0 0 20px;
+      font-size: 18px;
+    }
+
+    strong { font-weight: 850; }
+
+    blockquote {
+      margin: 30px 0;
+      padding: 4px 0 4px 24px;
+      border-left: 4px solid var(--accent);
+      color: #2e2822;
+      font-family: var(--serif);
+      font-size: clamp(21px, 2.4vw, 28px);
+      line-height: 1.58;
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 14px;
+    }
+
+    .pull {
+      margin: 38px 0;
+      padding: 28px 0;
+      border-top: 2px solid #201913;
+      border-bottom: 2px solid #201913;
+      font-family: var(--serif);
+      font-size: clamp(27px, 4vw, 44px);
+      line-height: 1.24;
+      color: #201913;
+    }
+
+    .note {
+      padding: 18px 20px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(15, 118, 110, .18);
+      border-radius: 8px;
+      color: #173f3b;
+      margin: 28px 0;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 32px 0;
+    }
+
+    .flow-card {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .flow-card h3 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    .flow-card.chat h3 { color: var(--danger); }
+    .flow-card.agent h3 { color: var(--success); }
+
+    .step {
+      position: relative;
+      padding: 14px 14px 14px 42px;
+      margin: 10px 0;
+      border: 1px solid rgba(36, 29, 22, .09);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .54);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 12px;
+      top: 13px;
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #251e17;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .compare {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 26px 0 8px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      font-size: 16px;
+    }
+
+    .compare th, .compare td {
+      padding: 15px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare th {
+      background: #211b16;
+      color: #fff7ec;
+      font-weight: 800;
+    }
+
+    .compare tr:last-child td { border-bottom: 0; }
+
+    details {
+      margin: 18px 0;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, .72);
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 16px 18px;
+      font-weight: 850;
+      color: #2c251f;
+    }
+
+    details .detail-body {
+      padding: 0 18px 18px;
+      color: #433a32;
+    }
+
+    .question-box ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .question-box li {
+      margin: 10px 0;
+      font-size: 17px;
+    }
+
+    .sources ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .sources li {
+      margin: 10px 0;
+      color: #51483f;
+    }
+
+    .ending {
+      margin-top: 38px;
+      padding: 34px;
+      background: #201913;
+      color: #fff7ec;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .ending p {
+      font-size: 20px;
+    }
+
+    .ending blockquote {
+      color: #fff7ec;
+      border-left-color: #f59e0b;
+      margin-bottom: 18px;
+    }
+
+    .tagline {
+      margin-top: 28px;
+      color: #d7c9b7;
+      font-size: 16px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #171411;
+      color: #fffaf2;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .collapsed section.collapsible .section-content {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .layout, .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+        order: 2;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        padding: 12px 0;
+        flex-direction: column;
+      }
+
+      .nav-actions {
+        justify-content: flex-start;
+      }
+
+      p { font-size: 17px; }
+      .lede { font-size: 18px; padding: 22px; }
+      .compare { font-size: 14px; }
+      .compare th, .compare td { padding: 12px 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, html {
+        scroll-behavior: auto;
+        transition: none !important;
+      }
+    }
+  </style>
+<meta property="og:type" content="article">
+<meta property="og:title" content="챗봇의 시대는 끝났다 — 게으른 지시가 미래를 지배한다">
+<meta property="og:description" content="🎧 Voice Briefing &lt;iframe src=&quot;https://drive.google.com/file/d/1G4PdKKNBUFP5ShjLU9kOA6S5ryQjWFQ/preview&quot; width=&quot;640&quot; height=&quot;100&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot; allow=&quot;auto">
+<meta property="og:url" content="https://reallygood83.github.io/moondoc/marktl/s/287ov7/">
+<meta property="og:image" content="https://reallygood83.github.io/moondoc/marktl/s/287ov7/assets/챗봇의-시대-종말-개인ai-에이전트-ko-2026-05-08-cartoon-1778240054508.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="챗봇의 시대는 끝났다 — 게으른 지시가 미래를 지배한다">
+<meta name="twitter:description" content="🎧 Voice Briefing &lt;iframe src=&quot;https://drive.google.com/file/d/1G4PdKKNBUFP5ShjLU9kOA6S5ryQjWFQ/preview&quot; width=&quot;640&quot; height=&quot;100&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot; allow=&quot;auto">
+<meta name="twitter:image" content="https://reallygood83.github.io/moondoc/marktl/s/287ov7/assets/챗봇의-시대-종말-개인ai-에이전트-ko-2026-05-08-cartoon-1778240054508.png">
+<link rel="canonical" href="https://reallygood83.github.io/moondoc/marktl/s/287ov7/">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">NewsInsight · AI Interfaces</div>
+      <div class="nav-actions" aria-label="문서 도구">
+        <button type="button" data-copy="summary">요약 복사</button>
+        <button type="button" data-copy="outline">목차 복사</button>
+        <button type="button" id="toggleSections">섹션 접기</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-label="기사 소개">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">2026 AI 에이전트 리포트</span>
+          <h1>챗봇의 시대는 끝났다 — 게으른 지시가 미래를 지배한다</h1>
+          <p class="subtitle">챗봇은 AI 시대의 도착지가 아니라 데모였다. 다음 10억 명은 AI와 대화하지 않는다. 그들은 AI에게 일을 위임한다.</p>
+          <div class="meta" aria-label="기사 정보">
+            <span>Moon</span>
+            <span>2026. 5. 8.</span>
+            <span>NewsInsight</span>
+            <span>#개인AI에이전트</span>
+          </div>
+        </div>
+        <figure class="hero-card">
+          <img src="assets/%EC%B1%97%EB%B4%87%EC%9D%98-%EC%8B%9C%EB%8C%80-%EC%A2%85%EB%A7%90-%EA%B0%9C%EC%9D%B8ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-ko-2026-05-08-cartoon-1778240054508.png" alt="챗봇에서 개인 AI 에이전트로 이동하는 흐름을 표현한 일러스트">
+          <figcaption>챗봇의 다음 인터페이스는 더 긴 대화가 아니라 더 짧은 위임이다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="shell layout">
+      <aside class="toc" aria-label="목차">
+        <h2>목차</h2>
+        <nav id="toc"></nav>
+      </aside>
+
+      <article id="article">
+        <p class="lede">핵심은 사용자 수가 아니다. ChatGPT는 여전히 거대하다. 그러나 빌더와 운영자의 기준선은 이미 바뀌었다. AI는 이제 답변하는 도구가 아니라, 파일을 고치고 일정을 잡고 기능을 출시하는 실행 계층으로 평가된다.</p>
+
+        <div class="share-panel">
+          <h2>공유용 한 문장</h2>
+          <p class="share-text" id="shareSentence">“더 좋은 프롬프트”의 시대가 아니라 “더 적은 프롬프트”의 시대가 온다. 챗봇 이후의 AI는 대화 상대가 아니라 위임받는 동료다.</p>
+          <div class="copy-row">
+            <button type="button" data-copy="share">공유 문장 복사</button>
+            <button type="button" data-copy="prompt">토론 질문 복사</button>
+          </div>
+        </div>
+
+        <section id="prologue" class="collapsible" data-title="프롤로그: 챗봇 입력창 앞의 그 어색한 침묵">
+          <h2 class="section-title">프롤로그: 챗봇 입력창 앞의 그 어색한 침묵</h2>
+          <div class="section-content">
+            <p>지금 ChatGPT를 열어보라. 빈 입력창을 바라보라. 그 미묘한 부담감이 느껴지는가.</p>
+            <p>당신은 이미 다음 절차를 안다. 정성껏 다듬은 프롬프트 한 문단. 후속 질문 세 번. 결과를 복사해 구글 독스에 붙여넣기. 마지막에는 직접 정리. 결국 일은 당신이 다 했다. AI는 그저 <em>말</em>만 했다.</p>
+            <p>크리에이터 도구를 2년째 추적해온 입장에서 같은 패턴을 매주 본다. 실제로 무언가를 <em>출시</em>하는 사람들은 조용히 챗봇과의 대화를 멈췄다. 대신 AI에게 일을 시킨다. 인류 역사상 가장 빠르게 퍼진 소비자 소프트웨어인 챗봇이, AI 시대의 <em>덤 터미널</em>로 전락하고 있다.</p>
+            <div class="pull">다음 10억 명의 사용자는 AI와 대화하지 않을 것이다. 그들은 AI에게 위임할 것이다.</div>
+          </div>
+        </section>
+
+        <section id="builders" class="collapsible" data-title="I – 빌더들의 대탈출은 이미 끝났다">
+          <h2 class="section-title">I – 빌더들의 대탈출은 이미 끝났다</h2>
+          <div class="section-content">
+            <p>여기서 헤드라인이 놓치는 진실이 있다.</p>
+            <p>ChatGPT의 주간 활성 사용자는 여전히 9억 명. 작년의 두 배 이상이고 여전히 늘고 있다. 그러니까 “챗봇 시대의 종말”은 사용자 붕괴 이야기가 아니다. <strong>위상의 붕괴</strong> 이야기다.</p>
+            <p>빌더들과 운영자들은 이미 떠났다. Claude Code의 매출은 3개월 만에 10배 뛰며 2026년 2월 기준 연환산 25억 달러를 넘겼다. 개발자 46%가 <em>가장 사랑하는 도구</em>로 Claude Code를 꼽았다. Codex는 한 달 만에 주간 활성 사용자가 200만에서 300만으로 뛰었다.</p>
+            <blockquote>
+              Codex와 Claude Code에서는 AI에게 구글 독스를 편집하고, 크론 잡을 설정하고, 기능을 출시하고, 실제로 일을 끝내게 할 수 있다. ChatGPT와 Claude에서는 그저... 채팅만 할 수 있다.
+              <cite>Peter Yang</cite>
+            </blockquote>
+            <p>여기서 아무도 큰 소리로 말하지 않는 진실이 있다. 빌더들이 망명하는 도구는 곧 소비자 AI가 <em>해야 할 일</em>의 표준이 된다. Cursor는 세상에 <em>AI는 당신의 파일을 직접 편집해야 한다</em>고 가르쳤다. Claude Code는 <em>AI는 당신의 터미널을 돌려야 한다</em>고 가르쳤다.</p>
+            <p>기준이 “질문에 답하는 것”에서 “작업을 끝내는 것”으로 이동했다. 말만 하는 챗봇은, 이제 <em>비프음만 내는 계산기</em>처럼 느껴진다.</p>
+          </div>
+        </section>
+
+        <section id="plumbing" class="collapsible" data-title="II – 10억 명을 가로막는 배관 문제">
+          <h2 class="section-title">II – 10억 명을 가로막는 배관 문제</h2>
+          <div class="section-content">
+            <p>하지만 여기서 벽이 등장한다.</p>
+            <p>평범한 사람은 절대로 깃 저장소를 클론하거나, worktree를 설정하거나, MCP가 뭔지 배우려 하지 않는다. 시장에 <em>수요</em> 문제는 없다. <strong>배관 문제</strong>가 있을 뿐이다.</p>
+            <p>그 배관을 누가 어떻게 숨길지에 대한 초기 단서가 등장하고 있다. OpenClaw는 WhatsApp, Telegram, Slack 등 사용자가 이미 쓰고 있는 앱 안에 에이전트를 직접 심는다. Hermes Agent는 작업이 끝나면 자기가 한 단계를 분석하고, 잘 작동한 패턴을 추출해, 다음번 비슷한 문제에 자동으로 로드되는 자기 자신의 스킬 파일을 만든다.</p>
+
+            <div class="flow" aria-label="챗봇 시대와 개인 에이전트 시대 비교 흐름">
+              <div class="flow-card chat">
+                <h3>챗봇의 시대: 소멸 중</h3>
+                <div class="step" data-step="1">사용자가 정성스러운 프롬프트 작성</div>
+                <div class="step" data-step="2">AI가 텍스트로 답변</div>
+                <div class="step" data-step="3">사용자가 여기저기 복사 붙여넣기</div>
+                <div class="step" data-step="4">결국 사용자가 진짜 일을 함</div>
+              </div>
+              <div class="flow-card agent">
+                <h3>개인 에이전트 시대: 부상 중</h3>
+                <div class="step" data-step="1">사용자가 게으른 지시</div>
+                <div class="step" data-step="2">에이전트가 공유 맥락 읽음</div>
+                <div class="step" data-step="3">에이전트가 도구를 골라 실행</div>
+                <div class="step" data-step="4">다음 번엔 먼저 알아서 행동</div>
+              </div>
+            </div>
+
+            <details>
+              <summary>왜 “배관 숨기기”가 제품의 핵심인가</summary>
+              <div class="detail-body">
+                <p>개인 에이전트의 진짜 장벽은 모델 성능만이 아니다. API 키, 권한, 파일 접근, 앱 연결, 작업 기록, 보안 감사가 모두 사용자 경험 뒤편에서 안정적으로 묶여야 한다. 승자는 가장 많은 기능을 노출하는 회사가 아니라, 그 기능을 사용자가 배우지 않아도 되게 만드는 회사다.</p>
+              </div>
+            </details>
+
+            <p>다음 10년을 차지할 회사는, 이 모든 배관을 <em>이미 당신을 아는 친구에게 문자 보내는 느낌</em> 뒤로 완전히 숨기는 회사다. 그건 챗봇이 아니다. <em>동료</em>다.</p>
+          </div>
+        </section>
+
+        <section id="lazy" class="collapsible" data-title="III – 게으른 지시, 깊은 맥락">
+          <h2 class="section-title">III – 게으른 지시, 깊은 맥락</h2>
+          <div class="section-content">
+            <p>테스트해보자. 이 두 문장을 읽어보라.</p>
+            <blockquote>
+              “야, 그거 좀 처리해줄래?”<br>
+              “그 사람한테 전화 좀 해줄래?”
+            </blockquote>
+            <p>낯선 사람에게는 의미 불명의 문장이다. 하지만 당신의 배우자, 사업 파트너, 절친에게는 <em>완전한 지시문</em>이다. 수년간 쌓인 공유 맥락이 모든 무거운 작업을 대신 해준 것이다.</p>
+            <p>그것이 기준선이다. <em>더 좋은 프롬프트</em>가 아니라, <strong>더 적은 프롬프트</strong>. 진짜 개인 에이전트라면 “그거”가 무엇이고 “그 사람”이 누구인지 알아야 한다. 몇 달간 당신의 일에 함께 살아왔기 때문이다.</p>
+            <p>“팔로업 메일 작성”이라는 한 줄에서 당신의 어조, 당신의 서명 방식, 그리고 <em>밤 9시 이후로는 절대 답장 보내지 않는다</em>는 암묵적 규칙까지 알아야 한다.</p>
+
+            <table class="compare">
+              <thead>
+                <tr>
+                  <th>레이어</th>
+                  <th>기존 챗봇</th>
+                  <th>개인 에이전트</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>메모리</strong></td>
+                  <td>매 세션 망각</td>
+                  <td>수년간의 공유 맥락</td>
+                </tr>
+                <tr>
+                  <td><strong>행동</strong></td>
+                  <td>말만 함</td>
+                  <td>편집, 일정, 출시</td>
+                </tr>
+                <tr>
+                  <td><strong>신뢰</strong></td>
+                  <td>답변마다 직접 검증</td>
+                  <td>위임 후 감사</td>
+                </tr>
+                <tr>
+                  <td><strong>주도성</strong></td>
+                  <td>프롬프트 대기</td>
+                  <td>선제적으로 행동</td>
+                </tr>
+                <tr>
+                  <td><strong>사용자 스킬</strong></td>
+                  <td>프롬프트 엔지니어링</td>
+                  <td>게으른 위임</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="note">
+              승리하는 챗봇은 가장 똑똑한 모델을 가진 챗봇이 아니다. 당신의 어머니가 단어 하나 새로 배우지 않고 쓸 수 있는 챗봇이다.
+            </div>
+          </div>
+        </section>
+
+        <section id="trust" class="collapsible" data-title="공유 맥락은 강점이자 위험이다">
+          <h2 class="section-title">공유 맥락은 강점이자 위험이다</h2>
+          <div class="section-content">
+            <p>여기서부터 불편해진다.</p>
+            <p>친구를 유용하게 만드는 그 <em>공유 맥락</em>이, 동시에 친구를 <em>위험</em>하게도 만든다. Hermes의 가장 큰 강점인 자기 경험에서 자기 스킬을 직접 쓰는 능력은 곧 보안과 신뢰의 문제로 이어진다.</p>
+            <p>OpenClaw 스킬 마켓플레이스 감사에서 2,857개 스킬 중 <strong>341개가 악성코드로 분류</strong>되었다. 약 12%다. 에이전트가 신뢰 인프라보다 빠르게 자라고 있다.</p>
+            <div class="pull">진짜 제품은 “더 똑똑한 챗봇”이 아니다. 메모리, 자율성, 신뢰가 함께 서는 시스템이다.</div>
+          </div>
+        </section>
+
+        <div class="takeaway">
+          <h2>읽고 가져갈 것</h2>
+          <p>챗봇의 붕괴는 사용량의 붕괴가 아니라 위상의 붕괴다. 입력창은 병목이 되었고, 다음 인터페이스는 “묻고 답하기”보다 “맡기고 확인하기”에 가깝다.</p>
+        </div>
+
+        <section id="questions" class="question-box" data-title="생각해볼 질문">
+          <h2>이 글을 읽고 생각해볼 질문</h2>
+          <ol>
+            <li>AI가 당신의 지난 6개월 일을 이미 알고 있다면, 내일 가장 먼저 쓰지 않게 될 정성 프롬프트는 무엇인가?</li>
+            <li>“내 필요를 미리 알아채는 에이전트”와 “나에 대해 너무 많이 아는 에이전트” 사이의 경계선은 어디인가?</li>
+            <li>커뮤니티 빌드 에이전트 스킬의 12%에 이미 악성코드가 있다면, 당신은 누구를 게이트키퍼로 신뢰하겠는가?</li>
+          </ol>
+        </section>
+
+        <section id="conclusion" class="collapsible" data-title="결론: 말의 종말은 행동의 시작이다">
+          <h2 class="section-title">결론: 말의 종말은 행동의 시작이다</h2>
+          <div class="section-content">
+            <p>챗봇 시대는 도착지가 아니었다. <em>데모</em>였다.</p>
+            <p>우리는 3년 동안 AI가 똑똑한 텍스트 박스라고 배웠다. 그러나 진짜 제품을 출시한 빌더들은 다른 것을 깨달았다. <strong>그 박스가 곧 병목이었다.</strong></p>
+            <p>그들은 <em>설명</em> 대신 <em>실행</em>하는 도구가 등장한 그 순간 챗봇을 떠났다. 다음 10억 명의 사용자는 데모 단계 자체를 건너뛸 것이다. 그들은 AI를 챗봇이 아니라 <em>동료</em>로 처음 만나게 될 것이다.</p>
+
+            <div class="ending">
+              <p>그러니 질문은 ChatGPT, Claude, Gemini가 개인 에이전트로 진화할지 여부가 아니다. 시장은 이미 그들에게 그 진화의 대가를 지불하고 있다.</p>
+              <blockquote>“마침내 당신을 이해하는 무언가에게, 당신은 자신의 얼마만큼을 건넬 것인가?”</blockquote>
+              <p>챗봇은 그 질문에 답할 수 없다. 개인 에이전트는 곧 당신에게 그 답을 강요할 것이다.</p>
+              <p class="tagline">이 글이 새로운 시각을 열어주었다면, 아직 ChatGPT에서 복사 붙여넣기 중인 친구 한 명에게 공유해보자.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="sources" class="sources" data-title="Sources">
+          <h2>Sources</h2>
+          <ol>
+            <li><a href="https://x.com/petergyang/status/2052548729891439057">Peter Yang on X — “The chat era is coming to an end”</a></li>
+            <li><a href="https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/">ChatGPT reaches 900M weekly active users | TechCrunch</a></li>
+            <li><a href="https://www.getpanto.ai/blog/claude-ai-statistics">Claude AI Statistics 2026: Revenue, Users &amp; Market Share | Panto</a></li>
+            <li><a href="https://www.developersdigest.tech/blog/codex-vs-claude-code-april-2026">Codex vs Claude Code in April 2026 | Developers Digest</a></li>
+            <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025">Gartner Predicts 40% of Enterprise Apps Will Feature Task-Specific AI Agents by 2026</a></li>
+            <li><a href="https://thenewstack.io/persistent-ai-agents-compared/">OpenClaw vs. Hermes Agent: The race to build AI assistants that never forget | The New Stack</a></li>
+          </ol>
+        </section>
+      </article>
+    </div>
+  <section class="marktl-reader-feedback" aria-label="Reader feedback">
+<style>
+.marktl-reader-feedback { margin: 40px auto 0; padding: 0; }
+.marktl-reader-feedback h2 { margin: 0 0 8px; font: 800 22px/1.25 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.marktl-reader-feedback p { margin: 0 0 14px; color: #526173; font: 500 14px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.marktl-reader-feedback .giscus, .marktl-reader-feedback .giscus-frame { width: 100%; }
+</style>
+<h2>Reader feedback</h2>
+<p>Leave a public GitHub comment or reaction below.</p>
+<script src="https://giscus.app/client.js"
+        data-repo="reallygood83/moondoc"
+        data-repo-id="R_kgDOSZNBng"
+        data-category="General"
+        data-category-id="DIC_kwDOSZNBns4C81kX"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">복사했습니다.</div>
+
+  <script>
+    (function () {
+      const article = document.getElementById('article');
+      const toc = document.getElementById('toc');
+      const toast = document.getElementById('toast');
+      const toggle = document.getElementById('toggleSections');
+
+      const sections = Array.from(article.querySelectorAll('section[id][data-title]'));
+      toc.innerHTML = sections.map(section => {
+        return '<a href="#' + section.id + '">' + section.dataset.title + '</a>';
+      }).join('');
+
+      const copyBlocks = {
+        summary: '챗봇 시대의 종말은 사용자 수 붕괴가 아니라 위상 변화다. AI의 기준은 답변에서 실행으로 이동했고, 다음 10억 명은 프롬프트를 잘 쓰는 법보다 일을 게으르게 위임하는 법을 배우게 된다.',
+        outline: sections.map((section, index) => (index + 1) + '. ' + section.dataset.title).join('\\n'),
+        share: document.getElementById('shareSentence').textContent.trim(),
+        prompt: 'AI가 당신의 지난 6개월 일을 이미 알고 있다면, 내일 가장 먼저 쓰지 않게 될 정성 프롬프트는 무엇인가?\\n내 필요를 미리 알아채는 에이전트와 나에 대해 너무 많이 아는 에이전트 사이의 경계선은 어디인가?'
+      };
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(() => toast.classList.remove('show'), 1600);
+      }
+
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('복사했습니다.');
+        } catch (error) {
+          const area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.left = '-9999px';
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand('copy');
+          document.body.removeChild(area);
+          showToast('복사했습니다.');
+        }
+      }
+
+      document.querySelectorAll('[data-copy]').forEach(button => {
+        button.addEventListener('click', () => copyText(copyBlocks[button.dataset.copy] || ''));
+      });
+
+      toggle.addEventListener('click', () => {
+        document.body.classList.toggle('collapsed');
+        const isCollapsed = document.body.classList.contains('collapsed');
+        toggle.textContent = isCollapsed ? '섹션 펼치기' : '섹션 접기';
+        showToast(isCollapsed ? '본문 섹션을 접었습니다.' : '본문 섹션을 펼쳤습니다.');
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          toc.querySelectorAll('a').forEach(link => {
+            link.style.fontWeight = link.getAttribute('href') === '#' + entry.target.id ? '850' : '400';
+            link.style.color = link.getAttribute('href') === '#' + entry.target.id ? 'var(--accent)' : '#3c342c';
+          });
+        });
+      }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
+</body>
+</html>
