@@ -1,54 +1,75 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-12T04:52:08.904Z",
+  "updatedAt": "2026-05-12T05:48:23.049Z",
   "items": [
     {
-      "slug": "ai인지부채-생각하는법-ko-2026-05-06",
-      "shortId": "16ynxug",
-      "url": "https://reallygood83.github.io/moondoc/marktl/s/16ynxug/",
-      "canonicalUrl": "https://reallygood83.github.io/moondoc/marktl/ai%EC%9D%B8%EC%A7%80%EB%B6%80%EC%B1%84-%EC%83%9D%EA%B0%81%ED%95%98%EB%8A%94%EB%B2%95-ko-2026-05-06/",
-      "sourcePath": "300-Creator/350-NewsInsight/AI인지부채_생각하는법_KO_2026-05-06.md",
-      "artifactType": "slide-deck",
-      "title": "AI 인지부채의 시대: 당신의 뇌가 조용히 무너지는 5가지 신호",
-      "excerpt": "🎧 Voice Briefing <iframe src=\"https://drive.google.com/file/d/1BoAU6ammRz7QJmtsD2rtpiUiTSjpNmdU/preview\" width=\"640\" height=\"100\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"aut",
+      "slug": "챗봇의-시대-종말-개인ai-에이전트-ko-2026-05-08",
+      "shortId": "287ov7",
+      "url": "https://reallygood83.github.io/moondoc/marktl/s/287ov7/",
+      "canonicalUrl": "https://reallygood83.github.io/moondoc/marktl/%EC%B1%97%EB%B4%87%EC%9D%98-%EC%8B%9C%EB%8C%80-%EC%A2%85%EB%A7%90-%EA%B0%9C%EC%9D%B8ai-%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-ko-2026-05-08/",
+      "sourcePath": "300-Creator/350-NewsInsight/챗봇의_시대_종말_개인AI_에이전트_KO_2026-05-08.md",
+      "artifactType": "interactive-explainer",
+      "title": "챗봇의 시대는 끝났다 — 게으른 지시가 미래를 지배한다",
+      "excerpt": "🎧 Voice Briefing <iframe src=\"https://drive.google.com/file/d/1G4PdKKNBUFP5ShjLU9kOA6S5ryQjWFQ/preview\" width=\"640\" height=\"100\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"auto",
       "tags": [
         "- newsletter",
         "newsletter",
-        "AI인지부채",
-        "비판적사고",
-        "생산성역설",
-        "MIT연구",
+        "개인AI에이전트",
+        "클로드코드",
+        "코덱스",
+        "챗봇시대종말",
+        "에이전틱AI",
+        "wide-page"
+      ],
+      "updatedAt": "2026-05-12T05:48:23.049Z"
+    },
+    {
+      "slug": "aiì¸ì§ë¶ì±-ìê°íëë²-ko-2026-05-06",
+      "shortId": "16ynxug",
+      "url": "https://reallygood83.github.io/moondoc/marktl/s/16ynxug/",
+      "canonicalUrl": "https://reallygood83.github.io/moondoc/marktl/ai%EC%9D%B8%EC%A7%80%EB%B6%80%EC%B1%84-%EC%83%9D%EA%B0%81%ED%95%98%EB%8A%94%EB%B2%95-ko-2026-05-06/",
+      "sourcePath": "300-Creator/350-NewsInsight/AIì¸ì§ë¶ì±_ìê°íëë²_KO_2026-05-06.md",
+      "artifactType": "slide-deck",
+      "title": "AI ì¸ì§ë¶ì±ì ìë: ë¹ì ì ëê° ì¡°ì©í ë¬´ëì§ë 5ê°ì§ ì í¸",
+      "excerpt": "ð§ Voice Briefing <iframe src=\"https://drive.google.com/file/d/1BoAU6ammRz7QJmtsD2rtpiUiTSjpNmdU/preview\" width=\"640\" height=\"100\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"aut",
+      "tags": [
+        "- newsletter",
+        "newsletter",
+        "AIì¸ì§ë¶ì±",
+        "ë¹íì ì¬ê³ ",
+        "ìì°ì±ì­ì¤",
+        "MITì°êµ¬",
         "wide-page",
         "rohit4verse - How to think using AI (X)"
       ],
       "updatedAt": "2026-05-12T04:52:08.904Z"
     },
     {
-      "slug": "ë°ì´ë¸ì½ë©ì-ì¢ë§-ko-2026-05-11",
+      "slug": "Ã«Â°ÂÃ¬ÂÂ´Ã«Â¸ÂÃ¬Â½ÂÃ«ÂÂ©Ã¬ÂÂ-Ã¬Â¢ÂÃ«Â§Â-ko-2026-05-11",
       "shortId": "zfjpgx",
       "url": "https://reallygood83.github.io/moondoc/marktl/s/zfjpgx/",
       "canonicalUrl": "https://reallygood83.github.io/moondoc/marktl/%EB%B0%94%EC%9D%B4%EB%B8%8C%EC%BD%94%EB%94%A9%EC%9D%98-%EC%A2%85%EB%A7%90-ko-2026-05-11/",
-      "sourcePath": "300-Creator/350-NewsInsight/ë°ì´ë¸ì½ë©ì_ì¢ë§_KO_2026-05-11.md",
+      "sourcePath": "300-Creator/350-NewsInsight/Ã«Â°ÂÃ¬ÂÂ´Ã«Â¸ÂÃ¬Â½ÂÃ«ÂÂ©Ã¬ÂÂ_Ã¬Â¢ÂÃ«Â§Â_KO_2026-05-11.md",
       "artifactType": "research-report",
-      "title": "ë°ì´ë¸ ì½ë©ì ì¢ë§: 14ê°ìì´ ì°ë¦¬ìê² ê°ë¥´ì³ ì¤ í ê°ì§ ì§ì¤",
-      "excerpt": "ð§ Voice Briefing <iframe src=\"https://drive.google.com/file/d/1evyzraVspJEuLQh9BwFdM69yCJTrQRj/preview\" width=\"640\" height=\"100\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"auto",
+      "title": "Ã«Â°ÂÃ¬ÂÂ´Ã«Â¸Â Ã¬Â½ÂÃ«ÂÂ©Ã¬ÂÂ Ã¬Â¢ÂÃ«Â§Â: 14ÃªÂ°ÂÃ¬ÂÂÃ¬ÂÂ´ Ã¬ÂÂ°Ã«Â¦Â¬Ã¬ÂÂÃªÂ²Â ÃªÂ°ÂÃ«Â¥Â´Ã¬Â³Â Ã¬Â¤Â Ã­ÂÂ ÃªÂ°ÂÃ¬Â§Â Ã¬Â§ÂÃ¬ÂÂ¤",
+      "excerpt": "Ã°ÂÂÂ§ Voice Briefing <iframe src=\"https://drive.google.com/file/d/1evyzraVspJEuLQh9BwFdM69yCJTrQRj/preview\" width=\"640\" height=\"100\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"auto",
       "tags": [
         "- newsletter",
         "newsletter",
-        "ë°ì´ë¸ì½ë©",
-        "AIê°ë°",
-        "ì½ëë³´ì",
-        "ê°ë°ìì»¤ë¦¬ì´",
+        "Ã«Â°ÂÃ¬ÂÂ´Ã«Â¸ÂÃ¬Â½ÂÃ«ÂÂ©",
+        "AIÃªÂ°ÂÃ«Â°Â",
+        "Ã¬Â½ÂÃ«ÂÂÃ«Â³Â´Ã¬ÂÂ",
+        "ÃªÂ°ÂÃ«Â°ÂÃ¬ÂÂÃ¬Â»Â¤Ã«Â¦Â¬Ã¬ÂÂ´",
         "wide-page",
-        "Yozm IT - ë°ì´ë¸ ì½ë©ì ì§ì§ ììì ì´ì ë¶í°ë¤"
+        "Yozm IT - Ã«Â°ÂÃ¬ÂÂ´Ã«Â¸Â Ã¬Â½ÂÃ«ÂÂ©Ã¬ÂÂ Ã¬Â§ÂÃ¬Â§Â Ã¬ÂÂÃ¬ÂÂÃ¬ÂÂ Ã¬ÂÂ´Ã¬Â ÂÃ«Â¶ÂÃ­ÂÂ°Ã«ÂÂ¤"
       ],
       "updatedAt": "2026-05-12T03:36:14.589Z"
     },
     {
-      "slug": "dell-aiÃ¬ÂÂÃ«Â²Â-Ã­ÂÂ¸Ã«ÂÂ¼Ã­ÂÂÃ¬ÂÂÃªÂ·Â¸Ã«ÂÂ-ko-2026-05-10",
-      "title": "dell-aiÃ¬ÂÂÃ«Â²Â-Ã­ÂÂ¸Ã«ÂÂ¼Ã­ÂÂÃ¬ÂÂÃªÂ·Â¸Ã«ÂÂ-ko-2026-05-10",
+      "slug": "dell-aiÃÂ¬ÃÂÃÂÃÂ«ÃÂ²ÃÂ-ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¼ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂªÃÂ·ÃÂ¸ÃÂ«ÃÂÃÂ-ko-2026-05-10",
+      "title": "dell-aiÃÂ¬ÃÂÃÂÃÂ«ÃÂ²ÃÂ-ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¼ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂªÃÂ·ÃÂ¸ÃÂ«ÃÂÃÂ-ko-2026-05-10",
       "url": "https://reallygood83.github.io/moondoc/marktl/dell-ai%EC%84%9C%EB%B2%84-%ED%8A%B8%EB%9F%BC%ED%94%84%EC%8B%9C%EA%B7%B8%EB%84%90-ko-2026-05-10/",
-      "sourcePath": "300-Creator/350-NewsInsight/Dell_AIÃ¬ÂÂÃ«Â²Â_Ã­ÂÂ¸Ã«ÂÂ¼Ã­ÂÂÃ¬ÂÂÃªÂ·Â¸Ã«ÂÂ_KO_2026-05-10.md",
+      "sourcePath": "300-Creator/350-NewsInsight/Dell_AIÃÂ¬ÃÂÃÂÃÂ«ÃÂ²ÃÂ_ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¼ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂªÃÂ·ÃÂ¸ÃÂ«ÃÂÃÂ_KO_2026-05-10.md",
       "updatedAt": "2026-05-10T06:59:01.608Z"
     }
   ]
